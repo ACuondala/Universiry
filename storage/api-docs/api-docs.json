@@ -1,0 +1,713 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "University API",
+        "description": "Make all core processes of the university (register all elements, create queries, and get detailed reports of a student's performance in different courses and subjects).",
+        "contact": {
+            "name": "Anderson Cuondala Mendes da Costa",
+            "email": "acuondala@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/courses": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "list all courses",
+                "operationId": "02eeda67042dba2d22a517f26fb8eaf1",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CourseResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "Create a new Course",
+                "operationId": "a4d6b7e7be59571034428ffbb86aaf0a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestCourseResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CourseResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/courses/{id}/students": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "return all enrollment student in a spacific course",
+                "operationId": "b53d290b07bb3a4f474885d11fa2c133",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/courses/{id}/detailed-report": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "return all enrollment student in a spacific course",
+                "operationId": "369a68214c46f91771fc7335e97185e0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/enrollments": {
+            "post": {
+                "tags": [
+                    "Enrollment"
+                ],
+                "summary": "Enrollment student to a subject",
+                "operationId": "b5e369b8961e3cc480e849055f0fed5e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestEnrollmentResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EnrollmentResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/grades": {
+            "post": {
+                "tags": [
+                    "Grade"
+                ],
+                "summary": "add a grade to student",
+                "operationId": "efc1d4b5eaeb535c0441557a378fb4ef",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestGradeResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GradeResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/students": {
+            "get": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Show all Students",
+                "operationId": "75378cfd9c3d128e0846de3d32b101ec",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Create a new Teacher",
+                "operationId": "5e69d562cd0a6141ac0ffdd5a921d62b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/students/{id}/grades": {
+            "get": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "return all enrollment student in a spacific course",
+                "operationId": "5c79affbb721a8dec228d3aea8237211",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/subjects": {
+            "get": {
+                "tags": [
+                    "Subject"
+                ],
+                "summary": "Show all subjects",
+                "operationId": "c855f23389ed099cf68e0ec8b726d707",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SubjectResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Subject"
+                ],
+                "summary": "Create a new Subject",
+                "operationId": "acfe3773777c814aad62a7c623672b37",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestSubjectResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SubjectResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/subjects/{id}/average-grade": {
+            "get": {
+                "tags": [
+                    "Subject"
+                ],
+                "operationId": "9c34f39c4f7c5cbf74323fbca1c632bb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/teachers": {
+            "get": {
+                "tags": [
+                    "Teacher"
+                ],
+                "summary": "Show all Teachers",
+                "operationId": "9115585a972eee31c1bb78305dc1620c",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Teacher"
+                ],
+                "summary": "Create a new Teacher",
+                "operationId": "232f4cec049f7f25ccdce549242471bb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teachers/{id}/subjects": {
+            "get": {
+                "tags": [
+                    "Teacher"
+                ],
+                "summary": "return all enrollment student in a spacific course",
+                "operationId": "32cb2513657c8133e9de5e9a77587b90",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CourseResource": {
+                "title": "Course",
+                "description": "Resource representing a Course",
+                "properties": {
+                    "id": {
+                        "description": "ID of the course",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "Title of the course",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the course",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Creation timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Update timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "RequestCourseResource": {
+                "title": "Course",
+                "description": "Resource representing a Course",
+                "properties": {
+                    "title": {
+                        "description": "Title of the course",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the course",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "EnrollmentResource": {
+                "title": "Enrollment",
+                "description": "Resource representing a Enrollment",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "Student": {
+                        "description": "foreign key of course",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "Subject": {
+                        "description": "foreign key of teacher",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "RequestEnrollmentResource": {
+                "title": "RequestEnrollment",
+                "description": "Resource representing a Subject",
+                "properties": {
+                    "student_id": {
+                        "description": "foreign key of student",
+                        "type": "integer"
+                    },
+                    "subject_id": {
+                        "description": "foreign key of subject",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "GradeResource": {
+                "title": "Grade",
+                "description": "Resource representing a Grade",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "Student": {
+                        "description": "foreign key of course",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "Subject": {
+                        "description": "foreign key of teacher",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "RequestGradeResource": {
+                "title": "RequestGrade",
+                "description": "Resource representing a Grade",
+                "properties": {
+                    "student_id": {
+                        "description": "foreign key of student",
+                        "type": "integer"
+                    },
+                    "subject_id": {
+                        "description": "foreign key of subject",
+                        "type": "integer"
+                    },
+                    "grade": {
+                        "description": "foreign key of subject",
+                        "type": "number",
+                        "format": "float"
+                    }
+                },
+                "type": "object"
+            },
+            "RequestSubjectResource": {
+                "title": "Subject",
+                "description": "Resource representing a Subject",
+                "properties": {
+                    "title": {
+                        "description": "Title of the subject",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the subject",
+                        "type": "string"
+                    },
+                    "course_id": {
+                        "description": "foreign key of course",
+                        "type": "integer"
+                    },
+                    "teacher_id": {
+                        "description": "foreign key of teacher",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "SubjectResource": {
+                "title": "Subject",
+                "description": "Resource representing a Subject",
+                "properties": {
+                    "title": {
+                        "description": "Title of the subject",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the subject",
+                        "type": "string"
+                    },
+                    "course": {
+                        "description": "foreign key of course",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "teacher": {
+                        "description": "foreign key of teacher",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "RequestResource": {
+                "title": "Teacher or Students",
+                "description": "Request representing a Teacher or Student",
+                "properties": {
+                    "name": {
+                        "description": "name of the teacher or student",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email of the teacher or student",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Resource": {
+                "title": "Teacher or Student",
+                "description": "Resource representing a Teacher or Student",
+                "properties": {
+                    "id": {
+                        "description": "ID of the teacher or student",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "name of the teacher or student",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email of the teacher or student ",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Creation timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Update timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Course",
+            "description": "Course"
+        },
+        {
+            "name": "Enrollment",
+            "description": "Enrollment"
+        },
+        {
+            "name": "Grade",
+            "description": "Grade"
+        },
+        {
+            "name": "Student",
+            "description": "Student"
+        },
+        {
+            "name": "Subject",
+            "description": "Subject"
+        },
+        {
+            "name": "Teacher",
+            "description": "Teacher"
+        }
+    ]
+}
